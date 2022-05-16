@@ -10,7 +10,6 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
     // let wmi_con = WMIConnection::new(com_con.into()).expect("Failed to create WMI connection");
     let wmi_con = unsafe { WMIConnection::with_initialized_com(Some("ROOT\\CIMV2"))? };
 
-    // queries
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_OperatingSystem {
         Caption: String,
@@ -36,13 +35,6 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
     }
     let result_disk: Vec<Win32_DiskDrive> = wmi_con.query()?;
 
-    // #[derive(Serialize, Deserialize, Debug)]
-    // struct MSFT_PhysicalDisk {
-    //     DeviceId: String,
-    //     FriendlyName: String,
-    // }
-    // let result_disk_2: Vec<MSFT_PhysicalDisk> = wmi_con.query()?;
-
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_PhysicalMemory {
         Capacity: u64,
@@ -59,17 +51,15 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
     }
     let result_motherboard: Vec<Win32_BaseBoard> = wmi_con.query()?;
 
-    // format results to string
     let json_response = json!({
         "os": result_os,
         "cpu": result_cpu,
         "gpu": result_gpu,
         "disk": result_disk,
-        // "disk2": result_disk_2,
         "ram": result_ram,
         "motherboard": result_motherboard,
     });
-    // println!("{}", &json_response);
+
     Ok(json_response.to_string())
 }
 
