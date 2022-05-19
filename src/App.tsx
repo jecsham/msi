@@ -61,15 +61,7 @@ function App() {
             data-tauri-drag-region
             className="uk-text-small uk-text-center p-n"
           >
-            <span id="text-title">
-              <a
-                className="uk-text-muted pointer"
-                href="https://msi.jecsham.com"
-                target="_blank"
-              >
-                msi.jecsham.com
-              </a>{" "}
-            </span>
+            <span id="text-title">My System Information</span>
           </div>
         </div>
         <button
@@ -82,9 +74,6 @@ function App() {
       </section>
       <div id="render-portion">
         <div className="uk-padding-large uk-padding-remove-vertical">
-          <p className="uk-text-center uk-margin-small uk-text-bold">
-            My System Information
-          </p>
           <p
             id="text-website"
             className="uk-text-center uk-margin-small uk-text-muted uk-text-small uk-margin-remove-top"
