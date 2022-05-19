@@ -1,5 +1,5 @@
 [package]
-name = "Jecsham My System Information"
+name = "My System Information"
 version = "2.0.0"
 description = "A program that allows you to visualize the main components of your Windows computer"
 authors = ["you"]
