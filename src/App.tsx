@@ -6,6 +6,7 @@ import HardwareTable from "./components/HardwareTable";
 import SaveAsTxtButton from "./components/SaveAsTxtButton";
 import { dataStandardFormat } from "./libs/std_format";
 import SaveAsImgButton from "./components/SaveAsImgButton";
+import { appWindow } from "@tauri-apps/api/window";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -18,7 +19,7 @@ function App() {
     } as any)();
     if (val) {
       setData(val);
-      console.log("loaded from local", val);
+      // console.log("loaded from local", val);
     }
   };
 
@@ -28,7 +29,7 @@ function App() {
       try {
         let decodedJson = dataStandardFormat(JSON.parse(val));
         setData(decodedJson);
-        console.log("loaded from api", decodedJson);
+        // console.log("loaded from api", decodedJson);
         await forage.setItem({
           key: "system_data",
           value: decodedJson,
@@ -43,16 +44,23 @@ function App() {
     setLoading(false);
   };
 
+  const closeWindow = () => {
+    appWindow.close();
+  };
+
   // invoke the tauri api in useEffect
   useEffect(() => {
     loadData();
   }, []);
 
   return (
-    <div className="App">
+    <div className="content">
       <section className="uk-flex uk-flex-center">
         <div className="title-panel">
-          <div className="uk-text-small uk-text-center p-n">
+          <div
+            data-tauri-drag-region
+            className="uk-text-small uk-text-center p-n"
+          >
             <span id="text-title">
               <a
                 className="uk-text-muted pointer"
@@ -64,9 +72,16 @@ function App() {
             </span>
           </div>
         </div>
+        <button
+          onClick={closeWindow}
+          id="btnCloser"
+          className="uk-button uk-button-danger uk-button-small default"
+        >
+          x
+        </button>
       </section>
-      <div className="uk-padding-large uk-padding-remove-vertical">
-        <div id="render-portion">
+      <div id="render-portion">
+        <div className="uk-padding-large uk-padding-remove-vertical">
           <p className="uk-text-center uk-margin-small uk-text-bold">
             My System Information
           </p>
@@ -82,7 +97,11 @@ function App() {
             <SaveAsImgButton />
             <SaveAsTxtButton />
           </div>
-          {data && <HardwareTable data={data} />}
+        </div>
+        <div className="table-content">
+          <div className="uk-padding-large uk-padding-remove-vertical">
+            {data && <HardwareTable data={data} />}
+          </div>
         </div>
       </div>
     </div>

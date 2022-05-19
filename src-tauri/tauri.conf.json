@@ -48,7 +48,9 @@
     },
     "allowlist": {
       "window": {
-        "setSize": true
+        "setSize": true,
+        "startDragging": true,
+        "close": true
       },
       "fs": {
         "writeFile": true
@@ -67,7 +69,9 @@
         "height": 555,
         "center": true,
         "resizable": false,
-        "fullscreen": false
+        "fullscreen": false,
+        "decorations": false,
+        "transparent": true
       }
     ],
     "security": {

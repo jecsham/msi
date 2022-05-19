@@ -5,6 +5,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  /* border: 1px solid red; */
+  border-radius: 10px;
+  overflow: hidden;
+  user-select: none;
+  background-color: transparent;
+}
+
+.content {
+  background-color: #fff;
+}
+
+.table-content {
+  overflow: auto;
+  height: calc(100vh - 110px);
+  width: 100%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
