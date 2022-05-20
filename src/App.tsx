@@ -61,30 +61,19 @@ function App() {
             data-tauri-drag-region
             className="uk-text-small uk-text-center p-n"
           >
-            <span id="text-title">
-              <a
-                className="uk-text-muted pointer"
-                href="https://msi.jecsham.com"
-                target="_blank"
-              >
-                msi.jecsham.com
-              </a>{" "}
-            </span>
+            <span data-tauri-drag-region id="text-title">msi.jecsham.com</span>
           </div>
         </div>
         <button
           onClick={closeWindow}
           id="btnCloser"
-          className="uk-button uk-button-danger uk-button-small default"
+          className="uk-button uk-button-danger uk-button-small cursor-default"
         >
           x
         </button>
       </section>
       <div id="render-portion">
         <div className="uk-padding-large uk-padding-remove-vertical">
-          <p className="uk-text-center uk-margin-small uk-text-bold">
-            My System Information
-          </p>
           <p
             id="text-website"
             className="uk-text-center uk-margin-small uk-text-muted uk-text-small uk-margin-remove-top"

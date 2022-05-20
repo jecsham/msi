@@ -50,6 +50,13 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
         Product: String,
     }
     let result_motherboard: Vec<Win32_BaseBoard> = wmi_con.query()?;
+    
+    // used to test not available data
+    // #[derive(Serialize, Deserialize, Debug)]
+    // struct Win32_TapeDrive {
+    //     Name: String,
+    // }
+    // let not_found: Vec<Win32_TapeDrive> = wmi_con.query()?;
 
     let json_response = json!({
         "os": result_os,

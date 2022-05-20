@@ -7,7 +7,7 @@ function SaveAsTxtButton() {
   return (
     <button
       id="btnSaveTxt"
-      className="uk-button uk-button-default uk-button-small"
+      className="uk-button uk-button-default uk-button-small cursor-default"
       onClick={() => {
         save();
       }}

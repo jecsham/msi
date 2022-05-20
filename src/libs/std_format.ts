@@ -1,6 +1,14 @@
 import convert from "convert";
 
+const _validateContent = (jsonData: any) => {
+  if (jsonData?.length === 0) {
+    return false;
+  }
+  return true;
+};
+
 const _formatCpu = (jsonData: any) => {
+  if (!_validateContent(jsonData)) return [];
   let formattedContent = jsonData.map((e: any) =>
     e.Name.replace("(R)", "®").replace("(TM)", "™")
   );
@@ -8,11 +16,13 @@ const _formatCpu = (jsonData: any) => {
 };
 
 const _formatGpu = (jsonData: any) => {
+  if (!_validateContent(jsonData)) return [];
   let formattedContent = jsonData.map((e: any) => e.Name);
   return formattedContent;
 };
 
 const _formatRam = (jsonData: any) => {
+  if (!_validateContent(jsonData)) return [];
   let formattedContent = jsonData.map((e: any) => {
     let orgSize = convert(e.Capacity, "bytes").to("best");
     let quantity = Number(orgSize.quantity).toFixed(0);
@@ -27,6 +37,7 @@ const _formatRam = (jsonData: any) => {
 };
 
 const _formatDisk = (jsonData: any) => {
+  if (!_validateContent(jsonData)) return [];
   let formattedContent = jsonData.map((e: any) => {
     let orgSize = convert(e.Size, "bytes").to("best");
     let quantity = Number(orgSize.quantity).toFixed(2);
@@ -37,6 +48,7 @@ const _formatDisk = (jsonData: any) => {
 };
 
 const _formatMotherboard = (jsonData: any) => {
+  if (!_validateContent(jsonData)) return [];
   let formattedContent = jsonData.map(
     (e: any) => `${e.Product} - ${e.Manufacturer}`
   );
@@ -44,6 +56,7 @@ const _formatMotherboard = (jsonData: any) => {
 };
 
 const _formatOs = (jsonData: any) => {
+  if (!_validateContent(jsonData)) return [];
   let formattedContent = jsonData.map((e: any) => `${e.Caption}`);
   return formattedContent;
 };
