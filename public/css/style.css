@@ -11,6 +11,7 @@ html, body {
   overflow: hidden;
   user-select: none;
   background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .content {
