@@ -40,14 +40,17 @@ code {
   cursor: pointer;
 }
 
+.cursor-default {
+  cursor: default;
+}
+.cursor-default:hover {
+  cursor: default;
+}
+
 .title-panel {
   width: 100%;
   height: 32px;
   background: #fff;
-}
-
-.default {
-  cursor: default !important;
 }
 
 ::-webkit-scrollbar {

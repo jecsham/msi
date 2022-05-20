@@ -61,13 +61,13 @@ function App() {
             data-tauri-drag-region
             className="uk-text-small uk-text-center p-n"
           >
-            <span id="text-title">My System Information</span>
+            <span data-tauri-drag-region id="text-title">My System Information</span>
           </div>
         </div>
         <button
           onClick={closeWindow}
           id="btnCloser"
-          className="uk-button uk-button-danger uk-button-small default"
+          className="uk-button uk-button-danger uk-button-small cursor-default"
         >
           x
         </button>

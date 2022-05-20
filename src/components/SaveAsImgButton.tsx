@@ -7,7 +7,7 @@ function SaveAsImgButton() {
   return (
     <button
       id="btnSaveImage"
-      className="uk-button uk-button-default uk-button-small uk-margin-small-right"
+      className="uk-button uk-button-default uk-button-small uk-margin-small-right cursor-default"
       onClick={() => {
         save();
       }}
