@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "msi",
+    "productName": "My System Information",
     "version": "2.0.0"
   },
   "build": {
@@ -48,7 +48,6 @@
     },
     "allowlist": {
       "window": {
-        "setSize": true,
         "startDragging": true,
         "close": true
       },
