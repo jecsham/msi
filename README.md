@@ -7,7 +7,7 @@ A program that allows you to visualize the main components of your Windows compu
 - Save the data as screenshot image
 - Save the data as `.txt` file
 ### Development
-- Initially created with [electron](https://github.com/electron/electron), later moved to [tauri](https://github.com/tauri-apps/tauri) reducing `~80%` executable file
+- Initially created with [electron](https://github.com/electron/electron), later moved to [tauri](https://github.com/tauri-apps/tauri) reducing `~80%` executable file size
 - Using react for frontend
 - Using Rust for backend
 ### License
