@@ -48,7 +48,6 @@
     },
     "allowlist": {
       "window": {
-        "setSize": true,
         "startDragging": true,
         "close": true
       },
