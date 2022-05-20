@@ -1,6 +1,6 @@
 ## MY SYSTEM INFORMATION
 A program that allows you to visualize the main components of your Windows computer
-![preview](https://i.imgur.com/TfnwqXO.png)
+![preview](https://i.imgur.com/g8dhO8i.png)
 
 ### Main features
 - Visualize main components of your windows computer
