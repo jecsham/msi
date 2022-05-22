@@ -27,10 +27,12 @@ const _formatRam = (jsonData: any) => {
     let orgSize = convert(e.Capacity, "bytes").to("best");
     let quantity = Number(orgSize.quantity).toFixed(0);
     let unit = orgSize.unit.replace("i", "");
+    let speed = e.Speed || 0;
+    let configuredClockSpeed = e.ConfiguredClockSpeed || 0;
     return `${quantity} ${unit} ${
-      e.ConfiguredClockSpeed && e.ConfiguredClockSpeed === e.Speed
-        ? e.Speed
-        : `${e.ConfiguredClockSpeed}/${e.Speed}`
+      configuredClockSpeed === speed
+        ? speed
+        : `${configuredClockSpeed}/${speed}`
     } MHz | ${e.Manufacturer}`;
   });
   return formattedContent;
@@ -62,6 +64,14 @@ const _formatOs = (jsonData: any) => {
 };
 
 const dataStandardFormat = (jsonData: any) => {
+  if (jsonData.error) {
+    return [
+      {
+        title: "Error",
+        content: jsonData.error,
+      },
+    ];
+  }
   let formattedContent = [
     {
       title: "CPU",

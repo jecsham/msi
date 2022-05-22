@@ -61,7 +61,9 @@ function App() {
             data-tauri-drag-region
             className="uk-text-small uk-text-center p-n"
           >
-            <span data-tauri-drag-region id="text-title">msi.jecsham.com</span>
+            <span data-tauri-drag-region id="text-title">
+              msi.jecsham.com
+            </span>
           </div>
         </div>
         <button

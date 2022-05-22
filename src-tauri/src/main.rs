@@ -3,30 +3,35 @@
 #![allow(non_snake_case)]
 use serde::{Deserialize, Serialize};
 use serde_json::json;
+use wmi::variant::Variant;
 use wmi::WMIConnection;
 
 fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
-    // let com_con = COMLibrary::new().expect("Failed to load COM library");
-    // let wmi_con = WMIConnection::new(com_con.into()).expect("Failed to create WMI connection");
+    // let com_con = COMLibrary::new()?;
+    // let wmi_con = WMIConnection::new(com_con.into())?;
     let wmi_con = unsafe { WMIConnection::with_initialized_com(Some("ROOT\\CIMV2"))? };
+    // println!("executed wmi_con");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_OperatingSystem {
         Caption: String,
     }
     let result_os: Vec<Win32_OperatingSystem> = wmi_con.query()?;
+    // println!("executed result_os");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_Processor {
         Name: String,
     }
     let result_cpu: Vec<Win32_Processor> = wmi_con.query()?;
+    // println!("executed result_cpu");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_VideoController {
         Name: String,
     }
     let result_gpu: Vec<Win32_VideoController> = wmi_con.query()?;
+    // println!("executed result_gpu");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_DiskDrive {
@@ -34,15 +39,17 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
         Size: u64,
     }
     let result_disk: Vec<Win32_DiskDrive> = wmi_con.query()?;
+    // println!("executed result_disk");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_PhysicalMemory {
         Capacity: u64,
-        Speed: u32,
+        Speed: Variant,
         Manufacturer: String,
-        ConfiguredClockSpeed: u32,
+        ConfiguredClockSpeed: Variant,
     }
     let result_ram: Vec<Win32_PhysicalMemory> = wmi_con.query()?;
+    // println!("executed result_ram");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_BaseBoard {
@@ -50,13 +57,7 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
         Product: String,
     }
     let result_motherboard: Vec<Win32_BaseBoard> = wmi_con.query()?;
-    
-    // used to test not available data
-    // #[derive(Serialize, Deserialize, Debug)]
-    // struct Win32_TapeDrive {
-    //     Name: String,
-    // }
-    // let not_found: Vec<Win32_TapeDrive> = wmi_con.query()?;
+    // println!("executed result_motherboard");
 
     let json_response = json!({
         "os": result_os,
@@ -70,11 +71,25 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
     Ok(json_response.to_string())
 }
 
+fn error_response(e: String) -> String {
+    let empty_vec: Vec<String> = vec![];
+    return json!({
+        "os": empty_vec,
+        "cpu": empty_vec,
+        "gpu": empty_vec,
+        "disk": empty_vec,
+        "ram": empty_vec,
+        "motherboard": empty_vec,
+        "error": vec![e],
+    })
+    .to_string();
+}
+
 #[tauri::command]
 fn get_system_data_command() -> String {
     match get_system_data() {
         Ok(result) => result,
-        Err(e) => format!("{}", e),
+        Err(e) => error_response(e.to_string()),
     }
 }
 
