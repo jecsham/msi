@@ -4,7 +4,7 @@
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use wmi::variant::Variant;
-use wmi::{COMLibrary, WMIConnection};
+use wmi::WMIConnection;
 
 fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
     // let com_con = COMLibrary::new()?;
