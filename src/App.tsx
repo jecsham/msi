@@ -55,15 +55,21 @@ function App() {
 
   return (
     <div className="content">
-      <section className="uk-flex uk-flex-center">
+      <section className="uk-flex">
         <div className="title-panel">
-          <div
-            data-tauri-drag-region
-            className="uk-text-small uk-text-center p-n"
-          >
-            <span data-tauri-drag-region id="text-title">
+          <div data-tauri-drag-region className="uk-text-center p-n">
+            <a
+              data-tauri-drag-region
+              id="text-title"
+              href="https://msi.jecsham.com"
+              className="uk-link-reset uk-text-muted uk-text-small"
+              uk-tooltip="title: v2.beta-2; pos: bottom"
+              title="v2.beta-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               msi.jecsham.com
-            </span>
+            </a>
           </div>
         </div>
         <button
