@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { forage } from "@tauri-apps/tauri-forage";
 import Loading from "./components/Loading";
 import HardwareTable from "./components/HardwareTable";
-import SaveAsTxtButton from "./components/SaveAsTxtButton";
 import { dataStandardFormat } from "./libs/std_format";
-import SaveAsImgButton from "./components/SaveAsImgButton";
+import OptionsButton from "./components/OptionsButton";
 import { appWindow } from "@tauri-apps/api/window";
 
 function App() {
@@ -91,8 +90,7 @@ function App() {
             className="uk-flex uk-flex-right uk-margin-small"
           >
             {loading && <Loading />}
-            <SaveAsImgButton />
-            <SaveAsTxtButton />
+            <OptionsButton />
           </div>
         </div>
         <div className="table-content">
