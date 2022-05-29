@@ -62,8 +62,6 @@ function App() {
               id="text-title"
               href="https://msi.jecsham.com"
               className="uk-link-reset uk-text-muted uk-text-small"
-              uk-tooltip="title: v2.beta-2; pos: bottom"
-              title="v2.beta-2"
               target="_blank"
               rel="noopener noreferrer"
             >
