@@ -23,7 +23,7 @@ function App() {
   };
 
   const getSystemDataFromAPI = async () => {
-    let val: any = await invoke("get_system_data_command");
+    let val: any = await invoke("system_data_command");
     if (val) {
       try {
         let decodedJson = dataStandardFormat(JSON.parse(val));
