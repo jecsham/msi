@@ -1,6 +1,6 @@
 [package]
 name = "msi"
-version = "2.0.0"
+version = "2.0.1"
 description = "A program that allows you to visualize the main components of your Windows computer"
 authors = ["Jecsham Castillo"]
 license = "MIT"

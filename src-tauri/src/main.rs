@@ -1,4 +1,4 @@
-// #![windows_subsystem = "windows"]
+#![windows_subsystem = "windows"]
 mod commands;
 use commands::system_data::system_data_command;
 
