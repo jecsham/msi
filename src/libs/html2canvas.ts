@@ -1,6 +1,6 @@
 import html2canvas from "html2canvas";
 import { dialog, fs } from "@tauri-apps/api";
-var Buffer = require('buffer/').Buffer 
+var Buffer = require("buffer/").Buffer;
 
 const _decodeBase64Image = (dataString: string) => {
   let matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);

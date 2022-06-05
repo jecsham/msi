@@ -15,9 +15,9 @@ const saveAsTxt = async () => {
     let tableData = await _getSystemDataFromForage();
     if (!tableData) return;
 
-    tableData.forEach((e:any) => {
+    tableData.forEach((e: any) => {
       text += e.title + "\n";
-      e.content.forEach((c:any) => {
+      e.content.forEach((c: any) => {
         text += c + "\n";
       });
       text += "\n";
@@ -33,7 +33,7 @@ const saveAsTxt = async () => {
       ],
     });
     if (!saveDir) throw "Unable to get path";
-    fs.writeFile({path: saveDir, contents: text});
+    fs.writeFile({ path: saveDir, contents: text });
   } catch (error) {
     console.log(error);
   }

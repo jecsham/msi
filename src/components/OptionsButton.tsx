@@ -29,12 +29,18 @@ msi.jecsham.com`);
         <div uk-dropdown="mode: click">
           <ul className="uk-nav uk-dropdown-nav">
             <li>
-              <button onClick={saveImage} className="uk-button uk-button-small uk-button-link">
+              <button
+                onClick={saveImage}
+                className="uk-button uk-button-small uk-button-link"
+              >
                 Save as .png image
               </button>
             </li>
             <li>
-              <button onClick={saveText} className="uk-button uk-button-small uk-button-link">
+              <button
+                onClick={saveText}
+                className="uk-button uk-button-small uk-button-link"
+              >
                 Save as .txt file
               </button>
             </li>
