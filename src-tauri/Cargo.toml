@@ -1,6 +1,6 @@
 [package]
 name = "msi"
-version = "2.0.0"
+version = "2.0.1"
 description = "A program that allows you to visualize the main components of your Windows computer"
 authors = ["Jecsham Castillo"]
 license = "MIT"
@@ -18,7 +18,7 @@ tauri-build = { version = "1.0.0-rc.6", features = [] }
 wmi = "0.9"
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.0.0-rc.7", features = ["dialog-save", "fs-write-file", "shell-open", "window-close", "window-start-dragging"] }
+tauri = { version = "1.0.0-rc.7", features = ["dialog-message", "dialog-save", "fs-write-file", "shell-open", "updater", "window-close", "window-start-dragging"] }
 
 [features]
 # by default Tauri runs in production mode

@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { forage } from "@tauri-apps/tauri-forage";
 import Loading from "./components/Loading";
 import HardwareTable from "./components/HardwareTable";
-import SaveAsTxtButton from "./components/SaveAsTxtButton";
 import { dataStandardFormat } from "./libs/std_format";
-import SaveAsImgButton from "./components/SaveAsImgButton";
+import OptionsButton from "./components/OptionsButton";
 import { appWindow } from "@tauri-apps/api/window";
 
 function App() {
@@ -24,7 +23,7 @@ function App() {
   };
 
   const getSystemDataFromAPI = async () => {
-    let val: any = await invoke("get_system_data_command");
+    let val: any = await invoke("system_data_command");
     if (val) {
       try {
         let decodedJson = dataStandardFormat(JSON.parse(val));
@@ -55,15 +54,19 @@ function App() {
 
   return (
     <div className="content">
-      <section className="uk-flex uk-flex-center">
+      <section className="uk-flex">
         <div className="title-panel">
-          <div
-            data-tauri-drag-region
-            className="uk-text-small uk-text-center p-n"
-          >
-            <span data-tauri-drag-region id="text-title">
+          <div data-tauri-drag-region className="uk-text-center p-n">
+            <a
+              data-tauri-drag-region
+              id="text-title"
+              href="https://msi.jecsham.com"
+              className="uk-link-reset uk-text-muted uk-text-small"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               msi.jecsham.com
-            </span>
+            </a>
           </div>
         </div>
         <button
@@ -85,8 +88,7 @@ function App() {
             className="uk-flex uk-flex-right uk-margin-small"
           >
             {loading && <Loading />}
-            <SaveAsImgButton />
-            <SaveAsTxtButton />
+            <OptionsButton />
           </div>
         </div>
         <div className="table-content">
