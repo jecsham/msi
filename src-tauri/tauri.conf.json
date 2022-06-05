@@ -44,7 +44,12 @@
       }
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": [
+        "https://msi.jecsham.com/update.json"
+      ],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEM5MDdFN0VDOTAyRTZDMTgKUldRWWJDNlE3T2NIeVRJZzh1WFZUa2d6QUI2TEJHbzJHdFlJTm1YMVdydFpJZnlGUWVaRk9QcSsK"
     },
     "allowlist": {
       "window": {
@@ -55,7 +60,8 @@
         "writeFile": true
       },
       "dialog": {
-        "save": true
+        "save": true,
+        "message": true
       },
       "shell": {
         "open": true

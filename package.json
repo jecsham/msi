@@ -1,6 +1,6 @@
 {
   "name": "msi",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.3",
   "private": true,
   "dependencies": {
     "@tauri-apps/api": "^1.0.0-rc.4",
