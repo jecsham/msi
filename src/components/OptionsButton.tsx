@@ -14,7 +14,7 @@ function OptionsButton() {
     window.alert(`My System Information
 ${process.env.REACT_APP_VERSION}
 
-Jecsham Castillo (c) 2022
+Jecsham Castillo © ${new Date().getFullYear()}
 msi.jecsham.com`);
   };
   return (
