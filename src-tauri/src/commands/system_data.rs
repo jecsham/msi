@@ -3,34 +3,29 @@
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use wmi::variant::Variant;
-use wmi::WMIConnection;
+use wmi::{COMLibrary, WMIConnection};
 
 fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
-    // let com_con = COMLibrary::new()?;
-    // let wmi_con = WMIConnection::new(com_con.into())?;
-    let wmi_con = unsafe { WMIConnection::with_initialized_com(Some("ROOT\\CIMV2"))? };
-    // println!("executed wmi_con");
+    let initialized_com = unsafe { COMLibrary::assume_initialized() };
+    let wmi_con = WMIConnection::with_namespace_path("ROOT\\CIMV2", initialized_com)?;
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_OperatingSystem {
         Caption: String,
     }
     let result_os: Vec<Win32_OperatingSystem> = wmi_con.query()?;
-    // println!("executed result_os");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_Processor {
         Name: String,
     }
     let result_cpu: Vec<Win32_Processor> = wmi_con.query()?;
-    // println!("executed result_cpu");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_VideoController {
         Name: String,
     }
     let result_gpu: Vec<Win32_VideoController> = wmi_con.query()?;
-    // println!("executed result_gpu");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_DiskDrive {
@@ -38,7 +33,6 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
         Size: u64,
     }
     let result_disk: Vec<Win32_DiskDrive> = wmi_con.query()?;
-    // println!("executed result_disk");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_PhysicalMemory {
@@ -48,7 +42,6 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
         ConfiguredClockSpeed: Variant,
     }
     let result_ram: Vec<Win32_PhysicalMemory> = wmi_con.query()?;
-    // println!("executed result_ram");
 
     #[derive(Serialize, Deserialize, Debug)]
     struct Win32_BaseBoard {
@@ -56,7 +49,6 @@ fn get_system_data() -> Result<String, Box<dyn std::error::Error>> {
         Product: String,
     }
     let result_motherboard: Vec<Win32_BaseBoard> = wmi_con.query()?;
-    // println!("executed result_motherboard");
 
     let json_response = json!({
         "os": result_os,
@@ -80,7 +72,8 @@ fn error_response(e: String) -> String {
         "ram": empty_vec,
         "motherboard": empty_vec,
         "error": vec![e],
-    }).to_string()
+    })
+    .to_string()
 }
 
 #[tauri::command]
