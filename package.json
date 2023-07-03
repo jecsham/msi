@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "private": true,
   "dependencies": {
-    "@tauri-apps/api": "^1.0.0-rc.4",
+    "@tauri-apps/api": "^1.4.0",
     "@tauri-apps/tauri-forage": "^1.0.0-beta.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
@@ -26,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tauri": "env-cmd tauri"
+    "tauri:dev": "env-cmd tauri dev",
+    "tauri:build": "env-cmd tauri build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.0.0-rc.9",
+    "@tauri-apps/cli": "^1.4.0",
     "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0"
   }
